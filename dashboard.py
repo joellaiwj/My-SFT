@@ -99,7 +99,7 @@ with tabs[0]:
     with col1_3:
         st.markdown(f"<div style='text-align: center; font-size:45px; color:red'>{total_students}</div>", unsafe_allow_html=True) 
         st.markdown(f"<div style='text-align: center; font-size:16px;'>Students Taught</div>", unsafe_allow_html=True)
-        if "Graduate" is in course_level:
+        if "Graduate" in course_level:
             st.markdown(f"<div style='text-align: center; font-size:14px;'> across undergraduates and graduates. </div>", unsafe_allow_html=True)
         else:
             st.markdown(f"<div style='text-align: center; font-size:14px;'> across freshmen to final-year undergraduates. </div>", unsafe_allow_html=True)
