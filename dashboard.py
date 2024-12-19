@@ -38,8 +38,9 @@ with st.sidebar:
     subject_domain = st.multiselect(":school: **Subject Criteria:**",options=subjects,default=subjects)
     st.markdown("---")
 
-    levels = ["Foundation","Intermediate","Advanced"]
-    course_level = st.multiselect(":books: **Course Level:**",options=levels,default=levels)
+    levels = ["Foundation","Intermediate","Advanced","Graduate"]
+    undergraduate = ["Foundation","Intermediate","Advanced"]
+    course_level = st.multiselect(":books: **Course Level:**",options=levels,default=undergraduate)
     st.markdown("---")
 
     # Filtering the data
@@ -98,7 +99,10 @@ with tabs[0]:
     with col1_3:
         st.markdown(f"<div style='text-align: center; font-size:45px; color:red'>{total_students}</div>", unsafe_allow_html=True) 
         st.markdown(f"<div style='text-align: center; font-size:16px;'>Students Taught</div>", unsafe_allow_html=True)
-        st.markdown(f"<div style='text-align: center; font-size:14px;'> across freshmen to final-year undergraduates. </div>", unsafe_allow_html=True)
+        if "Graduate" is in course_level:
+            st.markdown(f"<div style='text-align: center; font-size:14px;'> across undergraduates and graduates. </div>", unsafe_allow_html=True)
+        else:
+            st.markdown(f"<div style='text-align: center; font-size:14px;'> across freshmen to final-year undergraduates. </div>", unsafe_allow_html=True)
     with col1_4:
         ## Step 1: Filter by the selected years
         filtered_by_years = filtered_df[filtered_df["AcadYear"].isin(years)]
