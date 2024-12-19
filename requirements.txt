@@ -1,13 +1,10 @@
 # Streamlit for building the app
-streamlit==1.27.0  # Adjust the version if necessary
+streamlit
 
 # Data manipulation
-pandas==1.5.3
-numpy==1.24.4
+pandas
+numpy
 
 # Data visualization
-seaborn==0.12.2
-matplotlib==3.7.2
-
-# Interactive plotting
-plotly==5.15.0
+matplotlib
+plotly
