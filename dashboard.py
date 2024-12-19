@@ -571,7 +571,7 @@ with tabs[1]:
                 y=5.1,
                 text=f"{mean_score:.2f} ± {stdev_score:.2f}", xanchor="left",
                 showarrow=False,
-                font=dict(size=12, color="black")
+                font=dict(size=12, color="red")
             )
 
         # Update layout for Scores
@@ -608,7 +608,7 @@ with tabs[1]:
                 y=5.1,
                 text=f"{mean_favor:.2f} ± {stdev_favor:.2f}", xanchor="left",
                 showarrow=False,
-                font=dict(size=12, color="black")
+                font=dict(size=12, color="red")
             )
 
         # Update layout for Favorability
