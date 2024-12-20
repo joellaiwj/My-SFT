@@ -384,11 +384,9 @@ with tabs[1]:
 
     # Criteria Report Tab
     with subtabs[0]:
-        st.subheader("Criteria-level Analysis")
-
         # Multi-select for filtering
         unique_criteria = SFT_criteria["Criteria Shortname"].dropna().unique()
-        selected_criteria = st.multiselect("**Select Criteria:**", options=unique_criteria, default=unique_criteria)
+        selected_criteria = st.multiselect("**Select Criterion:**", options=unique_criteria, default=unique_criteria)
 
         min_year, max_year = year_range
 
@@ -411,16 +409,14 @@ with tabs[1]:
             fig1 = plot_slope(average_scores,year_range[0],year_range[1],dynamic_color_palette)
             fig2 = plot_slope(favor_scores,year_range[0],year_range[1],dynamic_color_palette)
         
-        with st.expander("**SFT Rating Evolution for Selected Criteria**"):
+        with st.expander("**SFT Rating Evolution for Selected Criterion**"):
             st.plotly_chart(fig1, use_container_width=True)
 
-        with st.expander("**Favorability Rating Evolution for Selected Criteria**"):
+        with st.expander("**Favorability Rating Evolution for Selected Criterion**"):
             st.plotly_chart(fig2, use_container_width=True)   
 
     # Course Report Tab
     with subtabs[1]:
-        st.subheader("Course-level Analysis")
-
         # Sorting and filtering courses
         filtered_courses = filter_data(SFT_courses, years, subject_domain, course_level)
         filtered_courses = filtered_courses.sort_values(by="CourseCode")
