@@ -163,7 +163,7 @@ def plot_slope(data,min_year,max_year,color_palette):
         xaxis=dict(
             tickvals=[0,1],
             ticktext=[str(min_year), str(max_year)],
-            title=f"Criteria Changes between {min_year} and {max_year}"),
+            title=f"Rating Changes between {min_year} and {max_year}"),
         yaxis=dict(title="Criteria Rating"),
         legend_title="Domains",
     )
@@ -255,7 +255,7 @@ with st.sidebar:
     st.markdown("---")
 
     subjects = ["Physics", "Mathematics", "Interdisciplinary"]
-    subject_domain = st.multiselect("**Subject Criteria:**", options=subjects, default=subjects)
+    subject_domain = st.multiselect("**Subject Domains:**", options=subjects, default=subjects)
     st.markdown("---")
 
     levels = ["Foundation", "Intermediate", "Advanced", "Graduate"]
