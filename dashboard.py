@@ -451,10 +451,10 @@ with tabs[1]:
         unique_tutorials = aggregated_scores.columns
         colors = px.colors.qualitative.Pastel
 
-        with st.expander("**Criteria Score by Course Tutorial**"):
+        with st.expander("**SFT Rating by Tutorial for Selected Course**"):
             fig3 = plot_bar(aggregated_scores, score_stdev,colors)
             st.plotly_chart(fig3, use_container_width=True)
-        with st.expander("**Favorability by Course Tutorial**"):
+        with st.expander("**Favorability Rating by Tutorial for Selected Course**"):
             fig4 = plot_bar(aggregated_favor, favor_stdev,colors)
             st.plotly_chart(fig4, use_container_width=True)
 
