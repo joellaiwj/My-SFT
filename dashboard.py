@@ -409,11 +409,10 @@ with tabs[1]:
             fig1 = plot_slope(average_scores,year_range[0],year_range[1],dynamic_color_palette)
             fig2 = plot_slope(favor_scores,year_range[0],year_range[1],dynamic_color_palette)
         
-        with st.expander("**SFT Rating Evolution for Selected Criterion**"):
-            st.plotly_chart(fig1, use_container_width=True)
-
-        with st.expander("**Favorability Rating Evolution for Selected Criterion**"):
-            st.plotly_chart(fig2, use_container_width=True)   
+            with st.expander("**SFT Rating Evolution for Selected Criterion**"):
+                st.plotly_chart(fig1, use_container_width=True)
+            with st.expander("**Favorability Rating Evolution for Selected Criterion**"):
+                st.plotly_chart(fig2, use_container_width=True)   
 
     # Course Report Tab
     with subtabs[1]:
@@ -446,11 +445,12 @@ with tabs[1]:
         unique_tutorials = aggregated_scores.columns
         colors = px.colors.qualitative.Pastel
 
+        fig3 = plot_bar(aggregated_scores, score_stdev,colors)
+        fig4 = plot_bar(aggregated_favor, favor_stdev,colors)
+        
         with st.expander("**SFT Rating by Tutorial for Selected Course**"):
-            fig3 = plot_bar(aggregated_scores, score_stdev,colors)
             st.plotly_chart(fig3, use_container_width=True)
         with st.expander("**Favorability Rating by Tutorial for Selected Course**"):
-            fig4 = plot_bar(aggregated_favor, favor_stdev,colors)
             st.plotly_chart(fig4, use_container_width=True)
 
 with tabs[2]:
