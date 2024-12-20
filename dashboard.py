@@ -94,7 +94,6 @@ def sort_tutorials_within_domain(aggregated_data):
     return aggregated_data[sorted_columns]
 
 def calculate_course_aggregates(filtered_df, selected_course, group_by_columns, score_column="Score", favor_column="Favor"):
-    """Aggregate scores and favorability for the selected course."""
     filtered_df = filtered_df[(filtered_df["CourseCode"] + " - " + filtered_df["CourseName"] == selected_course)]
 
     # Grouping data
@@ -302,7 +301,7 @@ with tabs[0]:
     with col1_4:
         overall_average_rating_percent = overall_average_rating/5*100
         st.markdown(f"<div style='text-align: center; font-size:45px; color:red'>{overall_average_rating_percent:.1f}%</div>", unsafe_allow_html=True) 
-        st.markdown(f"<div style='text-align: center; font-size:16px;'>Average SFT Score</div>", unsafe_allow_html=True)
+        st.markdown(f"<div style='text-align: center; font-size:16px;'>Average SFT Rating</div>", unsafe_allow_html=True)
         st.markdown(f"<div style='text-align: center; font-size:14px;'> <strong>{overall_average_rating:.2f}</strong> out of 5 </div>", unsafe_allow_html=True)
     with col1_5:
         overall_favor_rating_percent = overall_favor_rating/5*100
@@ -412,10 +411,10 @@ with tabs[1]:
             fig1 = plot_slope(average_scores,year_range[0],year_range[1],dynamic_color_palette)
             fig2 = plot_slope(favor_scores,year_range[0],year_range[1],dynamic_color_palette)
         
-        with st.expander("**Average SFT Score by Criteria**"):
+        with st.expander("**SFT Rating Evolution for Selected Criteria**"):
             st.plotly_chart(fig1, use_container_width=True)
 
-        with st.expander("**Favorability Rating by Criteria**"):
+        with st.expander("**Favorability Rating Evolution for Selected Criteria**"):
             st.plotly_chart(fig2, use_container_width=True)   
 
     # Course Report Tab
