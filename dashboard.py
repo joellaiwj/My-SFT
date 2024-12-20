@@ -413,10 +413,10 @@ with tabs[1]:
             fig2 = plot_slope(favor_scores,year_range[0],year_range[1],dynamic_color_palette)
         
         with st.expander("**Average SFT Score by Criteria**"):
-            st.plotly_chart(fig1)
+            st.plotly_chart(fig1, use_container_width=True)
 
         with st.expander("**Favorability Rating by Criteria**"):
-            st.plotly_chart(fig2)   
+            st.plotly_chart(fig2, use_container_width=True)   
 
     # Course Report Tab
     with subtabs[1]:
@@ -453,10 +453,10 @@ with tabs[1]:
 
         with st.expander("**Criteria Score by Course Tutorial**"):
             fig3 = plot_bar(aggregated_scores, score_stdev,colors)
-            st.plotly_chart(fig3)
+            st.plotly_chart(fig3, use_container_width=True)
         with st.expander("**Favorability by Course Tutorial**"):
             fig4 = plot_bar(aggregated_favor, favor_stdev,colors)
-            st.plotly_chart(fig4)
+            st.plotly_chart(fig4, use_container_width=True)
 
 with tabs[2]:
     st.table(SFT_criteria)
