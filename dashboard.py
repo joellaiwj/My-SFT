@@ -454,4 +454,5 @@ with tabs[1]:
             st.plotly_chart(fig4, use_container_width=True)
 
 with tabs[2]:
+    st.header("Criteria Description")
     st.table(SFT_criteria)
