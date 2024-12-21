@@ -221,7 +221,7 @@ def yearly_plot_slope(data, min_year, max_year, color_palette):
             next_year = yearly_values.index[j + 1]
             
             if current_year == 2018 and next_year == 2023:
-                line_style = "dot"
+                line_style = None
             else:
                 current_value = yearly_values[current_year]
                 next_value = yearly_values[next_year]
