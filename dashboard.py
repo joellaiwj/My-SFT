@@ -353,9 +353,9 @@ with st.sidebar:
     st.markdown("Use the controls in this sidebar to change the range and type of data displayed in the dashboard.")
     st.markdown("---")
 
-    year_range = st.slider("**Teaching Years:**", 2016, 2024, [2023, 2024])
+    year_range = st.slider("**Teaching Years:**", 2016, 2024, [2016, 2024])
     years = np.arange(year_range[0], year_range[1] + 1)
-    st.markdown("I do not have teaching ratings for 2019-2022 as Graduate TAs were not rated by students in SUTD.")
+    st.markdown("Graduate TAs at SUTD were not rated by students. No teaching ratings for 2019-2022.")
     st.markdown("---")
 
     subjects = ["Physics", "Mathematics", "Interdisciplinary"]
