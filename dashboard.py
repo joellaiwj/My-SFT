@@ -350,7 +350,6 @@ def plot_bar(aggregated_data, aggregated_stdev,color_palette):
 ###### MAIN SCRIPT #####
 with st.sidebar:
     st.title("Dashboard parameters")
-    st.markdown("Use the controls in this sidebar to change the range and type of data displayed in the dashboard.")
     st.markdown("---")
 
     year_range = st.slider("**Teaching Years:**", 2016, 2024, [2016, 2024])
