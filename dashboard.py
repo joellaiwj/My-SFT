@@ -421,7 +421,7 @@ with tabs[0]:
         select_metric = st.selectbox("",options=["SFT Score", "Favorability"])
         st.markdown("**SFT Score:** The average score attained by the faculty based on all student feedback ratings collected.")
         st.markdown("**Favorability:** The average score attained by the faculty based on all _positive_ student feedback ratings collected.")
-        st.markdown("\* The overall average favorability data is unavailable.")
+        st.markdown("\* The school favorability data is unavailable.")
     with col2_2:
         if select_metric == "SFT Score":
             semester_totals = calculate_average_scores(filtered_df,"Score","AcadYearSem")
@@ -474,7 +474,7 @@ with tabs[0]:
             x=df2_filtered["YearSemester"],  # Use filtered x-axis values
             y=df2_filtered["Overall"],
             mode="markers",  # Line with markers
-            name="Average School Score",
+            name="Average School SFT Score*",
             marker=dict(size=10, symbol="diamond", color='red'),
         )
 
