@@ -149,7 +149,7 @@ def plot_slope(data,min_year,max_year,color_palette):
         if not pd.isna(max_value):
             # Max Year Annotation (Left-Aligned)
             fig.add_annotation(
-                x=1+0.01,
+                x=1+0.02,
                 y=max_value,
                 text=f"{domain} ({max_value:.2f})",
                 showarrow=False,
@@ -202,6 +202,110 @@ def plot_slope(data,min_year,max_year,color_palette):
     )
     return fig
 
+def yearly_plot_slope(data, min_year, max_year, color_palette):
+    fig = go.Figure()
+
+    # Filter data for the selected range of years
+    available_years = [year for year in range(min_year, max_year + 1) if year in data.index]
+
+    for i, domain in enumerate(data.columns):
+        # Extract values for all available years
+        yearly_values = data.loc[available_years, domain].dropna()
+        
+        # Use the custom color palette for the domain
+        color = color_palette.get(domain, "#333333")
+
+        # Plot lines and markers for each domain
+        for j in range(len(yearly_values.index) - 1):
+            current_year = yearly_values.index[j]
+            next_year = yearly_values.index[j + 1]
+            
+            if current_year == 2018 and next_year == 2023:
+                line_style = "dot"
+            else:
+                current_value = yearly_values[current_year]
+                next_value = yearly_values[next_year]
+                line_style = "solid" if next_value >= current_value else "dash"
+
+            fig.add_trace(
+                go.Scatter(
+                    x=[current_year, next_year],
+                    y=[yearly_values[current_year], yearly_values[next_year]],
+                    mode="lines+markers",
+                    name=domain,
+                    marker=dict(size=10),
+                    line=dict(width=2, dash=line_style, color=color),
+                    showlegend=(j == 0)
+                )
+            )
+
+        # Add annotations only for min and max years
+        if min_year in yearly_values.index:
+            min_value = yearly_values[min_year]
+            fig.add_annotation(
+                x=min_year-0.2,
+                y=min_value,
+                text=f"{domain} ({min_value:.2f})",
+                showarrow=False,
+                font=dict(size=10, color=color),
+                xanchor="right",
+            )
+        if max_year in yearly_values.index:
+            max_value = yearly_values[max_year]
+            fig.add_annotation(
+                x=max_year+0.2,
+                y=max_value,
+                text=f"{domain} ({max_value:.2f})",
+                showarrow=False,
+                font=dict(size=10, color=color),
+                xanchor="left",
+            )
+
+    # Customize the layout
+    fig.update_layout(
+        xaxis=dict(
+            tickvals=available_years,
+            title="Years",
+        ),
+        yaxis=dict(title="Criteria Rating"),
+        legend_title="Domains",
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="center",
+            x=0.5,
+            title_font=dict(size=12),
+            font=dict(size=10),
+            itemwidth=30,
+            traceorder="normal",
+            valign="middle",
+        ),
+    )
+
+    def add_line(year):
+        # Add vertical lines for the min_year and max_year
+        fig.add_shape(
+            type="line",
+            x0=year,
+            x1=year,
+            y0=0,
+            y1=1,
+            xref="x",
+            yref="paper",
+            line=dict(
+                color="gray",
+                width=1,
+                dash="dot",
+            ),
+            layer="below",
+        )
+    
+    for year in available_years:
+        add_line(year)
+
+    return fig
+
 def plot_bar(aggregated_data, aggregated_stdev,color_palette):
     indices = np.arange(len(aggregated_data))
     fig = go.Figure()
@@ -242,13 +346,14 @@ def plot_bar(aggregated_data, aggregated_stdev,color_palette):
 
     return fig
 
-# Sidebar Filters
+
+###### MAIN SCRIPT #####
 with st.sidebar:
     st.title("Dashboard parameters")
     st.markdown("Use the controls in this sidebar to change the range and type of data displayed in the dashboard.")
     st.markdown("---")
 
-    year_range = st.slider("**Teaching Years:**", 2016, 2024, [2016, 2024])
+    year_range = st.slider("**Teaching Years:**", 2016, 2024, [2023, 2024])
     years = np.arange(year_range[0], year_range[1] + 1)
     st.markdown("I do not have teaching ratings for 2019-2022 as Graduate TAs were not rated by students in SUTD.")
     st.markdown("---")
@@ -386,7 +491,8 @@ with tabs[1]:
     with subtabs[0]:
         # Multi-select for filtering
         unique_criteria = SFT_criteria["Criteria Shortname"].dropna().unique()
-        selected_criteria = st.multiselect("**Select Criterion:**", options=unique_criteria, default=unique_criteria)
+        default_criteria = ["Encouraged Engagement", "Communicated Clearly", "Supported Understanding", "Nurtured Critical Thinking", "Demonstrated Approachability"]
+        selected_criteria = st.multiselect("**Select Criterion:**", options=unique_criteria, default=default_criteria)
 
         min_year, max_year = year_range
 
@@ -399,15 +505,15 @@ with tabs[1]:
 
         # Generate a color palette for criteria
         num_criteria = len(unique_criteria)
-        generated_colors = pc.qualitative.Dark24[:len(unique_criteria)]
+        generated_colors = pc.qualitative.Dark24[:num_criteria]
         dynamic_color_palette = {criteria: generated_colors[i] for i, criteria in enumerate(unique_criteria)}
 
         # Check if data is available for the selected min_year and max_year
         if min_year not in average_scores.index or max_year not in average_scores.index:
             st.warning("Data not available for the selected start/end year.")
         else:
-            fig1 = plot_slope(average_scores,year_range[0],year_range[1],dynamic_color_palette)
-            fig2 = plot_slope(favor_scores,year_range[0],year_range[1],dynamic_color_palette)
+            fig1 = yearly_plot_slope(average_scores,year_range[0],year_range[1],dynamic_color_palette)
+            fig2 = yearly_plot_slope(favor_scores,year_range[0],year_range[1],dynamic_color_palette)
         
             with st.expander("**SFT Rating Evolution for Selected Criterion**"):
                 st.plotly_chart(fig1, use_container_width=True)
@@ -447,12 +553,11 @@ with tabs[1]:
 
         fig3 = plot_bar(aggregated_scores, score_stdev,colors)
         fig4 = plot_bar(aggregated_favor, favor_stdev,colors)
-        
+
         with st.expander("**SFT Rating by Tutorial for Selected Course**"):
             st.plotly_chart(fig3, use_container_width=True)
         with st.expander("**Favorability Rating by Tutorial for Selected Course**"):
             st.plotly_chart(fig4, use_container_width=True)
 
 with tabs[2]:
-    st.header("Criteria Description")
     st.table(SFT_criteria)
