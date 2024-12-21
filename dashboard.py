@@ -504,7 +504,7 @@ with tabs[0]:
         )
 
         # Display the chart in Streamlit
-        st.plotly_chart(fig)
+        st.plotly_chart(fig,use_container_width=True)
     
 with tabs[1]:
     st.subheader("Criteria Report")
