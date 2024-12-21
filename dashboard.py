@@ -363,8 +363,8 @@ with st.sidebar:
     st.markdown("---")
 
     levels = ["Foundation", "Intermediate", "Advanced", "Graduate"]
-    undergraduate = ["Foundation", "Intermediate", "Advanced"]
-    course_level = st.multiselect("**Course Level:**", options=levels, default=undergraduate)
+    default_levels = ["Foundation", "Intermediate", "Advanced"]
+    course_level = st.multiselect("**Course Level:**", options=levels, default=default_levels)
 
     filtered_df = filter_data(df, years, subject_domain, course_level)
     filtered_SFT_courses = filter_data(SFT_courses, years, subject_domain, course_level)
