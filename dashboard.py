@@ -243,7 +243,7 @@ def yearly_plot_slope(data, min_year, max_year, color_palette):
         if min_year in yearly_values.index:
             min_value = yearly_values[min_year]
             fig.add_annotation(
-                x=min_year-0.2,
+                x=min_year-0.1,
                 y=min_value,
                 text=f"{domain} ({min_value:.2f})",
                 showarrow=False,
@@ -253,7 +253,7 @@ def yearly_plot_slope(data, min_year, max_year, color_palette):
         if max_year in yearly_values.index:
             max_value = yearly_values[max_year]
             fig.add_annotation(
-                x=max_year+0.2,
+                x=max_year+0.1,
                 y=max_value,
                 text=f"{domain} ({max_value:.2f})",
                 showarrow=False,
