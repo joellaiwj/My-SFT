@@ -234,7 +234,7 @@ def yearly_plot_slope(data, min_year, max_year, color_palette):
                     name=domain,
                     marker=dict(size=10),
                     line=dict(width=2, dash=line_style, color=color),
-                    showlegend=(j == 0)
+                    showlegend=False
                 )
             )
 	# Add a separate marker-only trace for the legend
