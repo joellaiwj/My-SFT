@@ -288,7 +288,7 @@ def yearly_plot_slope(data, min_year, max_year, color_palette):
             xref="paper",
             yref="paper",
             font=dict(size=10),
-            align="left"
+            align="right"
         )
         fig.add_shape(
             type="line",
@@ -298,7 +298,7 @@ def yearly_plot_slope(data, min_year, max_year, color_palette):
             y1=1 - i * 0.1,
             xref="paper",
             yref="paper",
-            line=dict(color="black", width=2, dash=item["dash"])
+            line=dict(color="black", width=1, dash=item["dash"])
         )
 
     # Customize the layout
