@@ -8,8 +8,9 @@ import plotly.colors as pc
 st.set_page_config(page_title="My SFT",page_icon=":bar_chart:",layout="wide")
 
 st.title(":bar_chart: My Student Feedback on Teaching")
-
 file_name="All_SFT.xlsx"
+
+st.logo("/Figures/jl_logo_solid.png", size="medium", icon_image="/Figures/jl_logo_gw.png")
 
 # Load data
 def load_data(file_name):
@@ -349,8 +350,6 @@ def plot_bar(aggregated_data, aggregated_stdev,color_palette):
 
 ###### MAIN SCRIPT #####
 with st.sidebar:
-    st.logo("/Figures/jl_logo_solid.png", *, size="medium", icon_image="/Figures/jl_logo_gw.png")
-	
     st.title("Dashboard parameters")
     st.markdown("---")
 
