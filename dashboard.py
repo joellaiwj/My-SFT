@@ -226,18 +226,20 @@ def yearly_plot_slope(data, min_year, max_year, color_palette):
                 next_value = yearly_values[next_year]
                 line_style = "solid" if next_value >= current_value else "dash"
 
+            # Main trace for plotting (not showing in legend)
             fig.add_trace(
                 go.Scatter(
                     x=[current_year, next_year],
                     y=[yearly_values[current_year], yearly_values[next_year]],
                     mode="lines+markers",
-                    name=domain,
+                    name=domain if j == 0 else None,
                     marker=dict(size=10),
                     line=dict(width=2, dash=line_style, color=color),
                     showlegend=False
                 )
             )
-	# Add a separate marker-only trace for the legend
+        
+        # Add a separate marker-only trace for the legend
         fig.add_trace(
             go.Scatter(
                 x=[None],
@@ -247,7 +249,7 @@ def yearly_plot_slope(data, min_year, max_year, color_palette):
                 name=domain
             )
         )
-	    
+
         # Add annotations only for min and max years
         if min_year in yearly_values.index:
             min_value = yearly_values[min_year]
@@ -270,31 +272,34 @@ def yearly_plot_slope(data, min_year, max_year, color_palette):
                 xanchor="left",
             )
 
-    # Add dummy traces for legend
-    fig.add_trace(
-        go.Scatter(
-            x=[None], y=[None],
-            mode="lines",
-            line=dict(width=2, dash="solid", color="black"),
-            name="year-on-year improvement"
+    # Add line-style details to the right using annotations
+    line_style_annotations = [
+        {"text": "year-on-year improvement", "dash": "solid"},
+        {"text": "year-on-year decrease", "dash": "dash"},
+        {"text": "no data available", "dash": "dot"}
+    ]
+
+    for i, item in enumerate(line_style_annotations):
+        fig.add_annotation(
+            x=1.02,
+            y=1 - i * 0.1,
+            text=item["text"],
+            showarrow=False,
+            xref="paper",
+            yref="paper",
+            font=dict(size=10),
+            align="left"
         )
-    )
-    fig.add_trace(
-        go.Scatter(
-            x=[None], y=[None],
-            mode="lines",
-            line=dict(width=2, dash="dash", color="black"),
-            name="year-on-year decrease"
+        fig.add_shape(
+            type="line",
+            x0=1.02,
+            x1=1.05,
+            y0=1 - i * 0.1,
+            y1=1 - i * 0.1,
+            xref="paper",
+            yref="paper",
+            line=dict(color="black", width=2, dash=item["dash"])
         )
-    )
-    fig.add_trace(
-        go.Scatter(
-            x=[None], y=[None],
-            mode="lines",
-            line=dict(width=2, dash="dot", color="black"),
-            name="no data available"
-        )
-    )
 
     # Customize the layout
     fig.update_layout(
@@ -316,6 +321,7 @@ def yearly_plot_slope(data, min_year, max_year, color_palette):
             traceorder="normal",
             valign="middle",
         ),
+        margin=dict(r=150)  # Increase right margin to accommodate line-style annotations
     )
 
     def add_line(year):
