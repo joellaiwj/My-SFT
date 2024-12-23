@@ -284,8 +284,8 @@ def yearly_plot_slope(data, min_year, max_year, color_palette):
 	            type="line",
 	            x0=1.02,
 	            x1=1.05,
-	            y0=1 - i * 0.1,
-	            y1=1 - i * 0.1,
+	            y0=1.02 - i * 0.1,
+	            y1=1.02 - i * 0.1,
 	            xref="paper",
 	            yref="paper",
 	            line=dict(color="black", width=2, dash=item["dash"])
