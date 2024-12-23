@@ -298,7 +298,7 @@ def yearly_plot_slope(data, min_year, max_year, color_palette):
 	            xref="paper",
 	            yref="paper",
 	            font=dict(size=10),
-	            align="left"
+	            align="right"
 	        )
         
 
