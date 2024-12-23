@@ -349,6 +349,8 @@ def plot_bar(aggregated_data, aggregated_stdev,color_palette):
 
 ###### MAIN SCRIPT #####
 with st.sidebar:
+    st.logo("/Figures/jl_logo_solid.png", *, size="medium", icon_image="/Figures/jl_logo_gw.png")
+	
     st.title("Dashboard parameters")
     st.markdown("---")
 
