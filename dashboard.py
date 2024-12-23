@@ -284,14 +284,14 @@ def yearly_plot_slope(data, min_year, max_year, color_palette):
 	            type="line",
 	            x0=1.02,
 	            x1=1.05,
-	            y0=1.02 - i * 0.1,
-	            y1=1.02 - i * 0.1,
+	            y0=0.98 - i * 0.1,
+	            y1=0.98 - i * 0.1,
 	            xref="paper",
 	            yref="paper",
 	            line=dict(color="black", width=2, dash=item["dash"])
 	        )
 	    fig.add_annotation(
-	            x=0.98,
+	            x=1.02,
 	            y=1 - i * 0.1,
 	            text=item["text"],
 	            showarrow=False,
