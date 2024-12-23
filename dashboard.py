@@ -280,7 +280,17 @@ def yearly_plot_slope(data, min_year, max_year, color_palette):
     ]
 
     for i, item in enumerate(line_style_annotations):
-        fig.add_annotation(
+        fig.add_shape(
+            type="line",
+            x0=1.02,
+            x1=1.03,
+            y0=1 - i * 0.1,
+            y1=1 - i * 0.1,
+            xref="paper",
+            yref="paper",
+            line=dict(color="black", width=2, dash=item["dash"])
+        )
+	fig.add_annotation(
             x=1.02,
             y=1 - i * 0.1,
             text=item["text"],
@@ -288,18 +298,9 @@ def yearly_plot_slope(data, min_year, max_year, color_palette):
             xref="paper",
             yref="paper",
             font=dict(size=10),
-            align="right"
+            align="left"
         )
-        fig.add_shape(
-            type="line",
-            x0=1.02,
-            x1=1.05,
-            y0=1 - i * 0.1,
-            y1=1 - i * 0.1,
-            xref="paper",
-            yref="paper",
-            line=dict(color="black", width=1, dash=item["dash"])
-        )
+        
 
     # Customize the layout
     fig.update_layout(
