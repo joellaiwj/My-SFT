@@ -260,6 +260,32 @@ def yearly_plot_slope(data, min_year, max_year, color_palette):
                 xanchor="left",
             )
 
+    # Add dummy traces for legend
+    fig.add_trace(
+        go.Scatter(
+            x=[None], y=[None],
+            mode="lines",
+            line=dict(width=2, dash="solid", color="black"),
+            name="-: year-on-year improvement"
+        )
+    )
+    fig.add_trace(
+        go.Scatter(
+            x=[None], y=[None],
+            mode="lines",
+            line=dict(width=2, dash="dash", color="black"),
+            name="--: year-on-year decrease"
+        )
+    )
+    fig.add_trace(
+        go.Scatter(
+            x=[None], y=[None],
+            mode="lines",
+            line=dict(width=2, dash="dot", color="black"),
+            name="..: no data available"
+        )
+    )
+
     # Customize the layout
     fig.update_layout(
         xaxis=dict(
