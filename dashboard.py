@@ -237,7 +237,17 @@ def yearly_plot_slope(data, min_year, max_year, color_palette):
                     showlegend=(j == 0)
                 )
             )
-
+	# Add a separate marker-only trace for the legend
+        fig.add_trace(
+            go.Scatter(
+                x=[None],
+                y=[None],
+                mode="markers",
+                marker=dict(size=10, color=color),
+                name=domain
+            )
+        )
+	    
         # Add annotations only for min and max years
         if min_year in yearly_values.index:
             min_value = yearly_values[min_year]
