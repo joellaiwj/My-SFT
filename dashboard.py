@@ -546,8 +546,7 @@ with tabs[0]:
 
         # Display the chart in Streamlit
         st.plotly_chart(fig,use_container_width=True)
-
-        st.markdown("2016-2018: School of Physical and Mathematical Sciences, College of Science")
+	st.markdown("2016-2018: School of Physical and Mathematical Sciences, College of Science")
 	st.markdown("2023-2024: Interdisciplinary Collaborative Core")
 with tabs[1]:
     st.subheader("Criteria Report")
