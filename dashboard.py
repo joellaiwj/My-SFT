@@ -543,7 +543,8 @@ with tabs[0]:
             name="Average Score of instructors in school",
             marker=dict(size=10, symbol="diamond", color='red'),
         )
-
+	    
+	# Add School details
 	fig.add_shape(
 	    type='line',
 	    x0=1,  # Starting x point
@@ -551,11 +552,11 @@ with tabs[0]:
 	    x1=3,  # Ending x point
 	    y1=5,  # Ending y point
 	    line=dict(color='RoyalBlue', width=2),
-	    xref='x',  # Reference to x-axis
-	    yref='y',  # Reference to y-axis
-	    arrowhead=2,  # Arrowhead at the end
-	    arrowsize=1,  # Size of the arrow
-	    arrowside='start+end'  # Arrowheads at both start and end
+	    xref='x',
+	    yref='y',
+	    arrowhead=2,
+	    arrowsize=1,
+	    arrowside='start+end'
 	)
 
         # Display the chart in Streamlit
