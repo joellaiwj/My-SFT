@@ -543,21 +543,6 @@ with tabs[0]:
             name="Average Score of instructors in school",
             marker=dict(size=10, symbol="diamond", color='red'),
         )
-	    
-	# Add School details
-	fig.add_shape(
-	    type='line',
-	    x0=1,  # Starting x point
-	    y0=5,  # Starting y point
-	    x1=3,  # Ending x point
-	    y1=5,  # Ending y point
-	    line=dict(color='RoyalBlue', width=2),
-	    xref='x',
-	    yref='y',
-	    arrowhead=2,
-	    arrowsize=1,
-	    arrowside='start+end'
-	)
 
         # Display the chart in Streamlit
         st.plotly_chart(fig,use_container_width=True)
