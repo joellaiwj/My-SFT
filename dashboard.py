@@ -544,6 +544,20 @@ with tabs[0]:
             marker=dict(size=10, symbol="diamond", color='red'),
         )
 
+	fig.add_shape(
+	    type='line',
+	    x0=1,  # Starting x point
+	    y0=5,  # Starting y point
+	    x1=3,  # Ending x point
+	    y1=5,  # Ending y point
+	    line=dict(color='RoyalBlue', width=2),
+	    xref='x',  # Reference to x-axis
+	    yref='y',  # Reference to y-axis
+	    arrowhead=2,  # Arrowhead at the end
+	    arrowsize=1,  # Size of the arrow
+	    arrowside='start+end'  # Arrowheads at both start and end
+	)
+
         # Display the chart in Streamlit
         st.plotly_chart(fig,use_container_width=True)
     
