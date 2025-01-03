@@ -540,7 +540,7 @@ with tabs[0]:
             x=df2_filtered["YearSemester"],  # Use filtered x-axis values
             y=df2_filtered["Overall"],
             mode="markers",  # Line with markers
-            name="Average Score of all instructors",
+            name="Average Score of instructors in school",
             marker=dict(size=10, symbol="diamond", color='red'),
         )
 
