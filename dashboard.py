@@ -220,7 +220,7 @@ def yearly_plot_slope(data, min_year, max_year, color_palette):
             next_year = yearly_values.index[j + 1]
             
             if current_year == 2018 and next_year == 2023:
-                line_style = ""
+                line_style = "dot"
             else:
                 current_value = yearly_values[current_year]
                 next_value = yearly_values[next_year]
@@ -275,7 +275,8 @@ def yearly_plot_slope(data, min_year, max_year, color_palette):
     # Add line-style details to the right using annotations
     line_style_annotations = [
         {"text": "year-on-year improvement", "dash": "solid"},
-        {"text": "year-on-year decrease", "dash": "dash"}
+        {"text": "year-on-year decrease", "dash": "dash"},
+	{"text": "no data available", "dash": "dot"},
     ]
 
     for i, item in enumerate(line_style_annotations):
